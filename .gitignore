@@ -8,3 +8,5 @@ coverage/
 .vercel
 training/data/
 training/.venv/
+
+.vercel
