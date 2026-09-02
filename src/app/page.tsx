@@ -1,4 +1,5 @@
 import Garden from "@/components/Garden";
+import { FOOTER_LINKS } from "@/lib/links";
 
 export default function Home() {
   return (
@@ -10,6 +11,17 @@ export default function Home() {
         TypeScript デコーダ — 両実装の一致はテストで照合済み。
       </p>
       <Garden />
+      <footer className="footer">
+        {FOOTER_LINKS.map((l, i) => (
+          <span key={l.href}>
+            {i > 0 && " ・ "}
+            <a href={l.href} target="_blank" rel="noreferrer">
+              {l.label}
+            </a>
+            {l.label === "MIT License" && " © 2026 坂田哲朗"}
+          </span>
+        ))}
+      </footer>
     </main>
   );
 }
