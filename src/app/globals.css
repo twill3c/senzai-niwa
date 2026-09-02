@@ -1,0 +1,101 @@
+:root {
+  --bg: #101418;
+  --panel: #181e24;
+  --line: #2a333d;
+  --text: #e8ebee;
+  --muted: #96a0aa;
+  --accent: #7fd4a8;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", "Noto Sans JP", sans-serif;
+  line-height: 1.7;
+}
+
+main {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 24px 16px 64px;
+}
+
+h1 {
+  font-size: 1.5rem;
+  letter-spacing: 0.06em;
+}
+
+.lede {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin: 8px 0 20px;
+}
+
+.garden {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.plane-wrap {
+  position: relative;
+  width: min(480px, 100%);
+  aspect-ratio: 1 / 1;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+  touch-action: none;
+  cursor: crosshair;
+  background: var(--panel);
+}
+
+.plane-wrap canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.plane-wrap .overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.output-panel {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+.output-panel canvas {
+  width: 280px;
+  height: 280px;
+  image-rendering: pixelated;
+  background: #000;
+  border-radius: 4px;
+}
+
+.zlabel {
+  font-variant-numeric: tabular-nums;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.hint {
+  color: var(--muted);
+  font-size: 0.85rem;
+  max-width: 280px;
+}
