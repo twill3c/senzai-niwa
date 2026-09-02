@@ -9,3 +9,8 @@
 {"v": "1.2", "ts": "2026-09-02T23:52:38+09:00", "project": "senzai-niwa", "loop_id": "loop_002", "event": "failure", "data": {"code": "TOOL-ENV", "severity": "S2", "detected_stage": 5, "summary": "Vercel 日次デプロイ上限(api-deployments-free-per-day・アカウント全体 100/日)で本番デプロイ拒否。24h 移動窓で枠が 1 つずつ空く既知の制約", "resolution": "retry"}}
 {"v": "1.2", "ts": "2026-09-02T23:53:36+09:00", "project": "senzai-niwa", "loop_id": "loop_002", "event": "commit", "data": {"sha": "c3033c6", "kind": "chore"}}
 {"v": "1.2", "ts": "2026-09-03T06:30:06+09:00", "project": "senzai-niwa", "loop_id": "loop_002", "event": "test_run", "data": {"command": "本番検品(footcheck 3 幅 + inspect 対話 + 目視)", "passed": 2, "failed": 0}}
+{"v": "1.2", "ts": "2026-09-03T06:31:22+09:00", "project": "senzai-niwa", "loop_id": "loop_002", "event": "commit", "data": {"sha": "bbf437f", "kind": "docs"}}
+{"v": "1.2", "ts": "2026-09-03T06:31:22+09:00", "project": "senzai-niwa", "loop_id": "loop_002", "event": "stage_end", "data": {"stage": 5, "stage_name": "検証", "result": "pass"}}
+{"v": "1.2", "ts": "2026-09-03T06:31:22+09:00", "project": "senzai-niwa", "loop_id": "loop_002", "event": "stage_end", "data": {"stage": 6, "stage_name": "文書同期", "result": "pass"}}
+{"v": "1.2", "ts": "2026-09-03T06:31:23+09:00", "project": "senzai-niwa", "loop_id": "loop_002", "event": "stage_end", "data": {"stage": 7, "stage_name": "完了", "result": "pass"}}
+{"v": "1.2", "ts": "2026-09-03T06:31:31+09:00", "project": "senzai-niwa", "loop_id": "loop_002", "event": "loop_end", "data": {"outcome": "success", "failure_count": 1, "summary": "公開完了。フッタ規約 5 項目+規約検査(T-010/T-011・陽性対照 6 通り)・解説 2 本発行・GitHub 公開・本番 senzai-niwa.vercel.app(2026-09-03)・本番検品 3 幅+対話で合格・app-menu cat12 掲載(92 枚)。失敗 1 件: Vercel 日次上限(TOOL-ENV)— 15 分間隔の再試行モニタで翌日枠を自動取得"}}
