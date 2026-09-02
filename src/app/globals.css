@@ -78,6 +78,8 @@ h1 {
   flex-direction: column;
   gap: 10px;
   align-items: center;
+  /* plane(480px)と横並びを保つ幅(main 960px − padding − gap に収める) */
+  max-width: 328px;
 }
 
 .output-panel canvas {
@@ -98,6 +100,55 @@ h1 {
   color: var(--muted);
   font-size: 0.85rem;
   max-width: 280px;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+
+.controls button {
+  background: var(--panel);
+  color: var(--text);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.controls button:hover:not(:disabled) {
+  border-color: var(--accent);
+}
+
+.controls button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.grid-panel {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+.grid-panel canvas {
+  width: min(420px, 100%);
+  image-rendering: pixelated;
+  background: #000;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.grid-panel .hint {
+  max-width: 420px;
 }
 
 /* fleet: fixed footer */
