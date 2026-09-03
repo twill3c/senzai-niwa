@@ -1,5 +1,8 @@
 import { describe, expect, it } from "vitest";
-import { MODEL } from "@/core/model";
+import type { VaeModel } from "@/core/model";
+import mnistWeights from "@/core/model/mnist/weights.json";
+
+const MODEL = mnistWeights as unknown as VaeModel;
 import { decode } from "@/core/decoder";
 
 // N-03 の実測用(閾値は置かない — 実測値を SPEC §4 に記録するための計測)。

@@ -38,6 +38,65 @@ h1 {
   margin: 8px 0 20px;
 }
 
+.garden-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.garden-tabs .tab {
+  background: var(--panel);
+  color: var(--muted);
+  border: 1px solid var(--line);
+  border-radius: 8px 8px 0 0;
+  padding: 8px 18px;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.garden-tabs .tab.active {
+  color: var(--text);
+  border-color: var(--accent);
+  border-bottom-color: var(--accent);
+  font-weight: 700;
+}
+
+.plane-col {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.legend-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.legend .swatch {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 2px;
+}
+
+.plane-wrap .loading {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
 .garden {
   display: flex;
   flex-wrap: wrap;

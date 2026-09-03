@@ -50,6 +50,34 @@ def load_idx_labels(path: Path) -> np.ndarray:
         return np.frombuffer(f.read(), dtype=np.uint8)
 
 
+def load_npz(path: Path) -> np.ndarray:
+    """KMNIST(CODH 配布の npz・キー arr_0)。仮定が崩れたら落ちる(HC-075)"""
+    with np.load(path) as f:
+        assert "arr_0" in f, f"{path}: arr_0 が無い(キー: {list(f.keys())})"
+        return f["arr_0"]
+
+
+def load_dataset(dataset: str, data: Path):
+    """(x_train uint8 (n,784), x_test uint8 (m,784), y_test, class_names) を返す"""
+    if dataset == "mnist":
+        x_train = load_idx_images(data / "train-images.gz")
+        x_test = load_idx_images(data / "t10k-images.gz")
+        y_test = load_idx_labels(data / "t10k-labels.gz")
+        names = [str(d) for d in range(10)]
+        return x_train, x_test, y_test, names
+    if dataset == "kmnist":
+        x_train = load_npz(data / "kmnist-train-imgs.npz").reshape(-1, 784)
+        x_test = load_npz(data / "kmnist-test-imgs.npz").reshape(-1, 784)
+        y_test = load_npz(data / "kmnist-test-labels.npz")
+        # クラス名は配布元 classmap から導く(F-09/G-04 — 定数で書かない)
+        lines = (data / "kmnist_classmap.csv").read_text(encoding="utf-8").strip().splitlines()
+        rows = [ln.split(",") for ln in lines[1:]]
+        assert [int(r[0]) for r in rows] == list(range(10)), "classmap の index が 0..9 でない"
+        names = [r[2] for r in rows]
+        return x_train, x_test, y_test, names
+    raise SystemExit(f"未知の dataset: {dataset}")
+
+
 class Vae(nn.Module):
     def __init__(self) -> None:
         super().__init__()
@@ -90,21 +118,20 @@ def numpy_decode(w: dict[str, np.ndarray], z: np.ndarray) -> np.ndarray:
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--data", default="training/data")
-    ap.add_argument("--out", default="src/core/model")
+    ap.add_argument("--dataset", choices=["mnist", "kmnist"], default="mnist")
+    ap.add_argument("--out", default=None, help="既定: src/core/model/<dataset>")
     ap.add_argument("--epochs", type=int, default=EPOCHS)
     args = ap.parse_args()
     data = Path(args.data)
-    out = Path(args.out)
+    out = Path(args.out) if args.out else Path("src/core/model") / args.dataset
     out.mkdir(parents=True, exist_ok=True)
 
     torch.manual_seed(SEED)
-    x_train = torch.from_numpy(
-        load_idx_images(data / "train-images.gz").astype(np.float32) / 255.0
-    )
-    x_test_np = load_idx_images(data / "t10k-images.gz").astype(np.float64) / 255.0
-    y_test = load_idx_labels(data / "t10k-labels.gz")
+    x_train_u8, x_test_u8, y_test, class_names = load_dataset(args.dataset, data)
+    x_train = torch.from_numpy(x_train_u8.astype(np.float32) / 255.0)
+    x_test_np = x_test_u8.astype(np.float64) / 255.0
     n = x_train.shape[0]
-    print(f"train {n} / test {x_test_np.shape[0]}")
+    print(f"dataset {args.dataset}: train {n} / test {x_test_np.shape[0]} / classes {class_names}")
 
     model = Vae()
     opt = torch.optim.Adam(model.parameters(), lr=LR)
@@ -170,6 +197,7 @@ def main() -> None:
             "reconBcePerPixel": bce_pp,
             "latentRange": LATENT_RANGE,
             "testCount": len(points),
+            "classNames": class_names,
         },
         **{k: v.tolist() for k, v in w.items()},
     }
