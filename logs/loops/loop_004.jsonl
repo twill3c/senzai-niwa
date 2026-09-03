@@ -4,3 +4,6 @@
 {"v": "1.2", "ts": "2026-09-03T11:23:45+09:00", "project": "senzai-niwa", "loop_id": "loop_004", "event": "test_run", "data": {"command": "npx vitest run model.test.ts(kmnist 資産未生成の赤確認)", "passed": 0, "failed": 1}}
 {"v": "1.2", "ts": "2026-09-03T11:24:07+09:00", "project": "senzai-niwa", "loop_id": "loop_004", "event": "stage_end", "data": {"stage": 3, "stage_name": "テスト先行", "result": "pass"}}
 {"v": "1.2", "ts": "2026-09-03T11:35:56+09:00", "project": "senzai-niwa", "loop_id": "loop_004", "event": "test_run", "data": {"command": "npx vitest run(両庭)", "passed": 34, "failed": 0}}
+{"v": "1.2", "ts": "2026-09-03T11:39:09+09:00", "project": "senzai-niwa", "loop_id": "loop_004", "event": "commit", "data": {"sha": "1456807", "kind": "data"}}
+{"v": "1.2", "ts": "2026-09-03T11:39:10+09:00", "project": "senzai-niwa", "loop_id": "loop_004", "event": "commit", "data": {"sha": "e167cc7", "kind": "feat"}}
+{"v": "1.2", "ts": "2026-09-03T11:40:14+09:00", "project": "senzai-niwa", "loop_id": "loop_004", "event": "failure", "data": {"code": "TOOL-ENV", "severity": "S2", "detected_stage": 5, "summary": "Vercel 日次デプロイ上限で本番デプロイ拒否(3 日連続)。HC-144 の二段構え(再試行モニタ常駐+残作業の先行完了)を適用", "resolution": "retry", "harness_ref": "HC-144"}}
