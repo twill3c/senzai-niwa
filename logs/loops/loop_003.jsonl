@@ -11,3 +11,7 @@
 {"v": "1.2", "ts": "2026-09-03T07:02:46+09:00", "project": "senzai-niwa", "loop_id": "loop_003", "event": "stage_end", "data": {"stage": 5, "stage_name": "検証", "result": "pass"}}
 {"v": "1.2", "ts": "2026-09-03T07:03:25+09:00", "project": "senzai-niwa", "loop_id": "loop_003", "event": "commit", "data": {"sha": "df62eaa", "kind": "feat"}}
 {"v": "1.2", "ts": "2026-09-03T07:03:26+09:00", "project": "senzai-niwa", "loop_id": "loop_003", "event": "failure", "data": {"code": "TOOL-ENV", "severity": "S2", "detected_stage": 5, "summary": "Vercel 日次デプロイ上限で本番デプロイ拒否(loop_002 に続き 2 度目)。移動窓に前日の消費が残っている。再試行モニタで枠を拾う", "resolution": "retry"}}
+{"v": "1.2", "ts": "2026-09-03T11:13:10+09:00", "project": "senzai-niwa", "loop_id": "loop_003", "event": "commit", "data": {"sha": "548071e", "kind": "docs"}}
+{"v": "1.2", "ts": "2026-09-03T11:13:10+09:00", "project": "senzai-niwa", "loop_id": "loop_003", "event": "stage_end", "data": {"stage": 6, "stage_name": "文書同期", "result": "pass"}}
+{"v": "1.2", "ts": "2026-09-03T11:13:10+09:00", "project": "senzai-niwa", "loop_id": "loop_003", "event": "stage_end", "data": {"stage": 7, "stage_name": "完了", "result": "pass"}}
+{"v": "1.2", "ts": "2026-09-03T11:13:10+09:00", "project": "senzai-niwa", "loop_id": "loop_003", "event": "loop_end", "data": {"outcome": "success", "failure_count": 3, "summary": "F-06 モーフ再生+F-07 格子俯瞰を実装し本番反映(2026-09-03 検品済み)。テスト 24 件・verify 全緑。失敗 3 件: VERIF-FALSE(検品器の boundingBox 掴み置き)・GEN-LOGIC(横並び退行 → HC-142)・TOOL-ENV(デプロイ枠 → HC-144)。全て解消/起票済み"}}
